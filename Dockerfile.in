@@ -1,0 +1,6 @@
+FROM alpine
+MAINTAINER Frederic Branczyk <fbranczyk@gmail.com>
+
+ADD _output/bin/ARG_OS/ARG_ARCH/ARG_BIN /bin/ARG_BIN
+
+ENTRYPOINT ["/bin/ARG_BIN"]
