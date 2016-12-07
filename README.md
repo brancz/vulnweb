@@ -33,7 +33,7 @@ calls.
 
 First the non recommended way (in terms of security) of blacklisting syscalls:
 
-	sudo rkt run quay.io/brancz/vulnweb-amd64 --net=host --seccomp mode=remove,errno=EPERM,exec,execve
+	sudo rkt run quay.io/brancz/vulnweb-amd64 --net=host --seccomp mode=remove,getpid,pipe2
 
 And then the better way of only allowing the syscalls that we know we need.
 
@@ -80,7 +80,7 @@ And we get a statistic of which syscalls were used how often.
 100.00    0.000000                   185         3 total
 ```
 
-> Note that this still contains the `execve` syscall, this is because `strace` used it.
+> Note: the `execve` entry above is due to `strace` itself and can be omitted from the whitelist.
 
 Now that we know that list of syscalls we can use it to start our applicaton
 with:
